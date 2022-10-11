@@ -29,7 +29,7 @@ class BaseModel:
     def __init__(self):
         """ The constructor of the class """
         self.id = str(uuid4())
-        self.created_at = datetime.now().isoformat()
+        self.created_at = datetime.now()
         self.updated_at = self.created_at
 
     def __str__(self):
@@ -46,4 +46,12 @@ class BaseModel:
             and the key with the name of the class
         """
         self.__dict__['__class__'] = self.__class__.__name__
+        self.__dict__['created_at'] = self.created_at.isoformat()
+        self.__dict__['updated_at'] = self.updated_at.isoformat()
         return self.__dict__
+
+
+obj = BaseModel()
+print("Typo del Atrib Created_At: \n\t", type(obj.created_at), "\n\t Value: ", obj.created_at)
+ndict = obj.to_dict()
+print(ndict["created_at"])
