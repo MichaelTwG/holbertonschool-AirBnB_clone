@@ -18,8 +18,7 @@ class test_base_models(unittest.TestCase):
         base2 = BaseModel()
         base_dict = base2.to_dict()
         self.assertEqual(type(base_dict), type({}))
-        base_dict2 = base2.__dict__
-        self.assertEqual(type(base_dict2), type({}))
+        self.assertIsNotNone(base_dict["id"])
     
     def test_str(self):
         base = BaseModel()
