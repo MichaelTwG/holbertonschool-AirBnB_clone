@@ -49,9 +49,3 @@ class BaseModel:
         self.__dict__['created_at'] = self.created_at.isoformat()
         self.__dict__['updated_at'] = self.updated_at.isoformat()
         return self.__dict__
-
-
-obj = BaseModel()
-print("Typo del Atrib Created_At: \n\t", type(obj.created_at), "\n\t Value: ", obj.created_at)
-ndict = obj.to_dict()
-print(ndict["created_at"])
