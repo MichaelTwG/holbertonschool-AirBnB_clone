@@ -13,7 +13,19 @@ class test_base_models(unittest.TestCase):
         self.assertEqual(base.created_at, base.updated_at)
         base.save()
         self.assertNotEqual(base.created_at, base.updated_at)
-        self.assertTrue(isinstance(base.to_dict(), dict))
+    
+    def test_to_dict(self):
+        base2 = BaseModel()
+        base_dict = base2.to_dict()
+        self.assertEqual(type(base_dict), type({}))
+        base_dict2 = base2.__dict__
+        self.assertEqual(type(base_dict2), type({}))
+    
+    def test_str(self):
+        base = BaseModel()
+        out = f"[{base.__class__.__name__}] ({base.id}) {base.__dict__}"
+        _str = base.__str__()
+        self.assertEqual(out, _str)
         
 if __name__ == '__main__':
     unittest.main()
