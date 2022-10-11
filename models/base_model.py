@@ -26,8 +26,13 @@ class BaseModel:
                            of the instance __dict__
             __dict__: added a key <__class__> with name of the class
     """
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """ The constructor of the class """
+
+        if kwargs is not None:
+            for key, val in kwargs.items():
+                print(key)
+                self.__dict__[key] = val
         self.id = str(uuid4())
         self.created_at = datetime.now()
         self.updated_at = self.created_at
