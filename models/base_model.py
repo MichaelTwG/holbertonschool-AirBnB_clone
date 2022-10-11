@@ -31,7 +31,6 @@ class BaseModel:
 
         if kwargs is not None:
             for key, val in kwargs.items():
-                print(key)
                 self.__dict__[key] = val
         self.id = str(uuid4())
         self.created_at = datetime.now()
