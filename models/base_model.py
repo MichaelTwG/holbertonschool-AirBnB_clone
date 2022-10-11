@@ -38,14 +38,15 @@ class BaseModel:
 
     def save(self):
         """ actually only update the date when the instance is saved """
-        self.updated_at = datetime.now().isoformat()
+        self.updated_at = datetime.now()
 
     def to_dict(self):
         """
             convert the class in a dictionary,
             and the key with the name of the class
         """
-        self.__dict__['__class__'] = self.__class__.__name__
-        self.__dict__['created_at'] = self.created_at.isoformat()
-        self.__dict__['updated_at'] = self.updated_at.isoformat()
-        return self.__dict__
+        my_dict = self.__dict__.copy()
+        my_dict['__class__'] = self.__class__.__name__
+        my_dict['created_at'] = self.created_at.isoformat()
+        my_dict['updated_at'] = self.updated_at.isoformat()
+        return my_dict
