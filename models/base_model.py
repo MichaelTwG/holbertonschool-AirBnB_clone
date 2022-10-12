@@ -28,14 +28,17 @@ class BaseModel:
     """
     def __init__(self, *args, **kwargs):
         """ The constructor of the class """
-
         if kwargs is not None:
             for key, val in kwargs.items():
+                if key == 'created_at' or key == 'updated_at':
+                    val = datetime.strptime(val, '%Y-%m-%dT%H:%M:%S.%f')
                 self.__dict__[key] = val
-        self.id = str(uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = self.created_at
-
+        if 'id' not in kwargs.keys():
+            self.id = str(uuid4())
+        if 'created_at' not in kwargs.keys():
+            self.created_at = datetime.now()
+        if 'updated_at' not in kwargs.keys():
+            self.updated_at = self.created_at
     def __str__(self):
         """ format when the object is printed """
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
