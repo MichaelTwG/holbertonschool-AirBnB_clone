@@ -41,7 +41,7 @@ class FileStorage:
         try:
             with open(FileStorage.__file_path, mode="r", encoding='utf-8') as File:
                 my_dict = load(File)
-                for key, dic in my_dict.intems():
+                for key, dic in my_dict.items():
                     FileStorage.__objects[key] == BaseModel(**dic)
         except FileNotFoundError:
             pass
