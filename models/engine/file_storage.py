@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Module File_Storage """
 from json import dump, load
+import json
 from models.base_model import BaseModel
 
 class FileStorage:
@@ -39,10 +40,9 @@ class FileStorage:
 
     def reload(self):
         try:
-            with open(FileStorage.__file_path, mode="r", encoding='utf-8') as File:
-                my_dict = load(File)
-                for key, dic in my_dict.items():
-                    FileStorage.__objects[key] == BaseModel(**dic)
-        except FileNotFoundError:
+            with open(FileStorage.__file_path, mode="r", encoding='utf-8') as file:
+                for key, val in json.load(file).items():
+                    FileStorage.__objects[key] == BaseModel(**val)
+        except:
             pass
         
