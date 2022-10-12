@@ -35,7 +35,7 @@ class FileStorage:
         FileStorage.__objects[key] = obj_dict
 
     def save(self):
-         with open(FileStorage.__file_path, mode="w") as File:
+        with open(FileStorage.__file_path, mode="w") as File:
             dump(self.__objects, File)
 
     def reload(self):
