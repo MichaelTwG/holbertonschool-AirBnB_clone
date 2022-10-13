@@ -35,14 +35,18 @@ class FileStorage:
         FileStorage.__objects[key] = obj_dict
 
     def save(self):
+        save_dict = {}
         with open(FileStorage.__file_path, mode="w") as File:
-            dump(self.__objects, File)
+            for key, value in self.__objects.items():
+                save_dict[key] = value
+
+            dump(save_dict, File)
 
     def reload(self):
         try:
-            with open(FileStorage.__file_path, mode="r", encoding='utf-8') as file:
-                for key, val in json.load(file).items():
-                    FileStorage.__objects[key] == BaseModel(**val)
+            with open(FileStorage.__file_path, mode="r") as file:
+                for key, val in load(file).items():
+                    FileStorage.__objects[key] = BaseModel(**val)
         except:
             pass
         

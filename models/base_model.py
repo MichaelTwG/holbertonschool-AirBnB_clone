@@ -5,7 +5,7 @@
 """
 from datetime import datetime
 from uuid import uuid4
-import time
+import models
 
 
 class BaseModel:
@@ -40,6 +40,9 @@ class BaseModel:
             self.created_at = datetime.now()
         if 'updated_at' not in kwargs.keys():
             self.updated_at = self.created_at
+        
+        if kwargs is None:
+            models.storage.new(self)
 
     def __str__(self):
         """ format when the object is printed """
@@ -48,6 +51,7 @@ class BaseModel:
     def save(self):
         """ actually only update the date when the instance is saved """
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """
