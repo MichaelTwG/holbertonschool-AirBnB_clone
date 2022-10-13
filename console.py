@@ -29,5 +29,16 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         """Doesn't do anything on ENTER. """
-
         pass
+
+    def do_create(self, line):
+        """Creates an instance.
+        """
+        if line == "" or line is None:
+            print("** class name missing **")
+        elif line not in storage.classes():
+            print("** class doesn't exist **")
+        else:
+            b = storage.classes()[line]()
+            b.save()
+            print(b.id)
