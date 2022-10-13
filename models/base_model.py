@@ -3,6 +3,7 @@
     Module BaseModel - create a Base Class
     that defines all common attributes/methods for other classes
 """
+from dataclasses import dataclass
 from datetime import datetime
 from uuid import uuid4
 import models
@@ -28,21 +29,15 @@ class BaseModel:
     """
     def __init__(self, *args, **kwargs):
         """ The constructor of the class """
+        self.id = str(uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = self.created_at
         if kwargs is not None:
             for key, val in kwargs.items():
                 if key == 'created_at' or key == 'updated_at':
                     val = datetime.strptime(val, '%Y-%m-%dT%H:%M:%S.%f')
                 self.__dict__[key] = val
-
-        if 'id' not in kwargs.keys():
-            self.id = str(uuid4())
-        if 'created_at' not in kwargs.keys():
-            self.created_at = datetime.now()
-        if 'updated_at' not in kwargs.keys():
-            self.updated_at = self.created_at
-        
-        if kwargs is None:
-            models.storage.new(self)
+        models.storage.new(self)
 
     def __str__(self):
         """ format when the object is printed """
