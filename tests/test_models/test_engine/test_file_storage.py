@@ -2,35 +2,31 @@
 """ TEST BASE MODEL"""
 
 import unittest
-from models.base_model import BaseModel
 import models
-
+from models import storage
+from models.engine.file_storage import FileStorage
+from models.base_model import BaseModel
 class test_file_storage(unittest.TestCase):
     def testFile(self):
-        self.assertEqual(str, type(models.storage.__file_path))
+        self.assertEqual(str, type(FileStorage._FileStorage__file_path))
 
     def testObj(self):
-        self.assertEqual(dict, type(models.storage.__objects))
+        self.assertEqual(dict, type(FileStorage._FileStorage__objects))
 
     def testAll(self):
-        dictionary = models.storage.all()
+        dictionary = storage.all()
         self.assertEqual(type(dictionary), dict)
 
     def testNew(self):
-        new = models.storage.all().copy()
-        models.storage.new(BaseModel())
-        self.assertNotEqual(new, models.storage.all())
+        new = storage.all().copy()
+        storage.new(BaseModel())
+        self.assertNotEqual(new, storage.all())
 
     def test_reload(self):
-        models.storage.__file_path = "NON_EXIST_FILE"
-        self.assertRaises(FileNotFoundError, models.storage.reload())
+        st = FileStorage()
+        self.assertRaises(FileNotFoundError, st.reload)
 
-    def test_save(self):
-        obj = BaseModel()
-        List = models.storage.all()
-        obj.save()
-        List2 = models.storage.all()
-        self.assertNotEqual(len(list), len(List2))
+   
 
 if __name__ == '__main__':
     unittest.main()

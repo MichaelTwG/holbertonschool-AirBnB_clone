@@ -3,27 +3,24 @@
 
 
 import cmd
-from models.base_modeL import BaseModel
+from models.base_model import BaseModel
 from models import storage
 import re
 import json
 
 class HBNBCommand(cmd.Cmd):
-
     """Class for the command interpreter. """
 
     prompt = "(hbnb) "
 
     def do_EOF(self, line):
-        """Handles End Of File character.
-        """
+        """Handles End Of File character."""
 
         print()
         return True
 
     def do_quit(self, line):
-        """Exits the program.
-        """
+        """Exits the program."""
 
         return True
 
@@ -32,30 +29,31 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, line):
-        """Creates an instance.
-        """
+        """Creates an instance."""
         if line == "" or line is None:
             print("** class name missing **")
-        elif line not in storage.classes():
+
+        className = line.split(" ")
+        if className[1] not in storage.classes():
             print("** class doesn't exist **")
         else:
-            b = storage.classes()[line]()
+            b = storage.classes(className[1])
             b.save()
             print(b.id)
 
     def do_destroy(self, line):
         """ delete an instance based on the class name and id. """
-         if line == "" or line is None:
+        if line == "" or line is None:
              print("** class name missing **")
-            else:
+        else:
             words = line.split(' ')
-            if words[0] not in storage.classes():
+            if words[1] not in storage.classes():
                 print("** class doesn't exist **")
-            elif len(words) < 2:
+            elif len(words) < 3:
                 print("** instance id missing **")
             else:
-                key = "{}.{}".format(words[0], words[1])
-                if key not in storage.all():
+                key = "{}.{}".format(words[1], words[2])
+                if key not in storage.all().keys():
                     print("** no instance found **")
                 else:
                     del storage.all()[key]
