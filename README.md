@@ -1,7 +1,6 @@
-[readmelogo](https://user-images.githubusercontent.com/105667144/196003373-c103b426-3eb8-418b-827b-c4a12c81745d.png)
+![image text](https://user-images.githubusercontent.com/105667144/196003373-c103b426-3eb8-418b-827b-c4a12c81745d.png)
+
 #  AirBnB clone - The console
-
-
 
 
 
