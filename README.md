@@ -102,10 +102,6 @@ Usage: <class_name>.<command>([<id>[name_arg value_arg]|[kwargs]])
 
 Usage: **create <class_name>**
 
-```
-(hbnb) create BaseModel
-
-```
 
 
 ***Example 1: Show an object***
