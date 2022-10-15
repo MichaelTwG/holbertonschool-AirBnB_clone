@@ -3,6 +3,7 @@
 import json
 from models.base_model import BaseModel
 
+
 class FileStorage:
     """
         Serializes and Deserializes instances to a JSON file
@@ -20,7 +21,7 @@ class FileStorage:
 
     __file_path = "file.json"
     __objects = {}
-        
+
     def all(self):
         """ return all"""
         return FileStorage.__objects
@@ -49,4 +50,15 @@ class FileStorage:
 
         except FileNotFoundError:
             pass
-        
+    
+    def classes(self):
+        dict_of_classes = {
+            "BaseModel": BaseModel()}
+        # ,
+        #     "User": User(),
+        #     "Place": Place(),
+        #     "State": State(),
+        #     "City": City(),
+        #     "Amenity": Amenity(),
+        #     "Review": Review()
+        return dict_of_classes
