@@ -47,36 +47,42 @@ class HBNBCommand(cmd.Cmd):
             ex: show BaseModel 1234-1234-1234
         """
         args = line.split()
-        instance_key = f"{args[0]}.{args[1]}"
-        object_dict = storage.all()
+        if len(args) == 0:
+            print("** class name missing **")
+        elif args[0] not in storage.classes():
+            print("** class doesn't exist **")
+        elif len(args) == 1:
+            print("** instance id missing **")
+        else:
+            instance_key = f"{args[0]}.{args[1]}"
+            object_dict = storage.all()
 
-        print(object_dict[instance_key])
+            try:
+                print(object_dict[instance_key])
+            except KeyError:
+                print("** no instance found **")
 
     def do_destroy(self, line):
         """
             Delete an instance based on the class name and id.
             ex: destroy BaseModel 1234-1234-1234
         """
-        if line == "" or line is None:
+        args = line.split()
+        
+        if len(args) == 0:
             print("** class name missing **")
-
-        words = line.split(' ')
-
-        if words[0] not in storage.classes():
+        elif args[0] not in storage.classes():
             print("** class doesn't exist **")
-
-        elif len(words) < 2:
+        elif len(args) == 1:
             print("** instance id missing **")
-
         else:
-            key = "{}.{}".format(words[1], words[2])
+            key = f"{args[0]}.{args[1]}"
 
-            if key not in storage.all().keys():
-                print("** no instance found **")
-
-            else:
+            try:
                 del storage.all()[key]
                 storage.save()
+            except KeyError:
+                print("** no instance found **")
 
     def do_all(self, line):
         """
@@ -89,15 +95,18 @@ class HBNBCommand(cmd.Cmd):
         object_list = []
 
         if len(args) == 1:
-            for key, instance in object_dict.items():
 
-                class_of_instance = key.split(".")
+            if args[0] not in storage.classes():
+                print("** class doesn't exist **")
+            else:
+                for key, instance in object_dict.items():
 
-                if class_of_instance[0] == args[0]:
+                    class_of_instance = key.split(".")
 
-                    object_list.append(str(instance))
+                    if class_of_instance[0] == args[0]:
+                        object_list.append(str(instance))
+
             print(object_list)
-
     def do_update(self, line):
         """
             Update the atributes of an instance
@@ -107,24 +116,30 @@ class HBNBCommand(cmd.Cmd):
         """
         args = line.split()
 
-        if len(args) < 1:
+        if len(args) == 0:
             print("** class name missing **")
-        elif len(args) < 2:
+        elif args[0] not in storage.classes():
+            print("** class doesn't exist **")
+        elif len(args) == 1:
             print("** instance id missing **")
-        elif len(args) < 3:
+        elif len(args) > 1:
+            instance_key = f"{args[0]}.{args[1]}"
+
+            if instance_key not in storage.all().keys():
+                print("** no instance found **")
+
+        elif len(args) == 2:
             print("** attribute name missing **")
-        elif len(args) < 4:
+        elif len(args) == 3:
             print("** value missing **")
-        else:
+
             attribute = args[2]
             atrib_val = args[3]
             object_dict = storage.all()
-            instance_key = f"{args[0]}.{args[1]}"
 
             object_dict[instance_key].__dict__[attribute] = atrib_val
             storage.save()
-        
-        
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
