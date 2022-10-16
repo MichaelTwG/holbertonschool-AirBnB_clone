@@ -1,17 +1,17 @@
 #!/usr/bin/python3
-""" Module console """
+""" Module for the entry point of the command interpreter. """
 
 import cmd
 from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
-    """ HBNBCommand inherits from cmd.Cmd """
+    """ HBNBCommand inherits from cmd.Cmd, Class for the command interpreter."""
 
     prompt = "(hbnb) "
 
     def do_quit(self, line):
-        """in quit - exit of the console"""
+        """ exits the program """
         return True
 
     def do_EOF(self, line):
@@ -24,7 +24,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, line):
         """
-            Creates an instance of the clase
+            Creates a class instance
             Ex: create BaseModel
         """
 
@@ -86,7 +86,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, line):
         """
-            Print all of the instances of a calass
+            Prints string representation of all instances of a class
             retrived for parametter
             ex: all BaseModel
         """
