@@ -101,16 +101,8 @@ All your files and folders are presented as a tree in the file explorer. You can
 
 ```
 
-***Alternative Syntax***
 
-Users are able to issue a number of console command using an alternative syntax:
-
-```
-Usage: <class_name>.<command>([<id>[name_arg value_arg]|[kwargs]])
-
-```
-
-
+## Examples
 
 ## Examples
 
@@ -119,45 +111,48 @@ Usage: <class_name>.<command>([<id>[name_arg value_arg]|[kwargs]])
 ***Example 0: Create an object***
 
 Usage: **create <class_name>**
+``` 
+(hbnb)  create BaseModel
+b516158e-17fa-4ba2-b51e-5cb3970214d5
+(hbnb)
 
-
-
+```
 ***Example 1: Show an object***
 
 Usage: **show <class_name> <_id>**
+```
+(hbnb) show BaseModel b516158e-17fa-4ba2-b51e-5cb3970214d5
+[BaseModel] (b516158e-17fa-4ba2-b51e-5cb3970214d5) {'id': 'b516158e-17fa-4ba2-b51e-5cb3970214d5', 'created_at': datetime.datetime(2022, 10, 16, 13, 53, 18, 26109), 'updated_at': datetime.datetime(2022, 10, 16, 13, 53, 18, 26168)}
+(hbnb)
+
+```
 
 
 
 ***Example 2: Destroy an object***
 
 Usage: **destroy <class_name> <_id>**
+```
+(hbnb) destroy  BaseModel b516158e-17fa-4ba2-b51e-5cb3970214d5
+(hbnb) show  BaseModel b516158e-17fa-4ba2-b51e-5cb3970214d5
+** no instance found **
+(hbnb)
+```
 
 
 ***Example 3: Update an object***
 
 Usage: **update <class_name> <_id>**
 
+```
+(hbnb) create BaseModel
+520284ba-06c5-445a-9549-996b58ac5b7a
+(hbnb) update BaseModel 520284ba-06c5-445a-9549-996b58ac5b7a first_name "person"
+(hbnb) show BaseModel 520284ba-06c5-445a-9549-996b58ac5b7a
+[BaseModel] (520284ba-06c5-445a-9549-996b58ac5b7a) {'id': '520284ba-06c5-445a-9549-996b58ac5b7a', 'created_at': datetime.datetime(2022, 10, 16, 13, 59, 39, 441724), 'updated_at': datetime.datetime(2022, 10, 16, 13, 59, 39, 441778), 'first_name': '"person"'}
+(hbnb)
+```
 
-***Alternative Syntax***
-
-***Example 0: Show all User objects***
-
-Usage: **<class_name>.all()**
-
-
-***Example 1: Destroy a User***
-
-Usage: **<class_name>.destroy(<_id>)**
-
-
-***Example 2: Update User (by attribute)***
-
-Usage: **<class_name>.update(<_id>, <attribute_name>, <attribute_value>)**
-
-
-***Example 3: Update User (by dictionary)***
-
-Usage: **<class_name>.update(<_id>)**
 
 
 ## Tests
