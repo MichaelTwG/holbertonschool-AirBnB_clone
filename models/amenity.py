@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-""" module amenity """
+"""
+    module amenity
+"""
 from models.base_model import BaseModel
 
 

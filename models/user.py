@@ -1,10 +1,12 @@
 #!/usr/bin/python3
-""" Module user """
+"""
+    Module user
+"""
 from models.base_model import BaseModel
 
 
 class User(BaseModel):
-    """ subclass of BaseModels User"""    
+    """ subclass of BaseModels User"""
     email = ""
     password = ""
     first_name = ""

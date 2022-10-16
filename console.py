@@ -6,7 +6,9 @@ from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
-    """ HBNBCommand inherits from cmd.Cmd """
+    """
+        HBNBCommand inherits from cmd.Cmd
+    """
 
     prompt = "(hbnb) "
 
@@ -43,7 +45,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
         """
-            Print the string representation of an instance bassed of the id
+            Print the string representation of
+            an instance bassed of the id
+
             ex: show BaseModel 1234-1234-1234
         """
         args = line.split()
@@ -64,7 +68,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, line):
         """
-            Delete an instance based on the class name and id.
+            Delete an instance based on
+            the class name and id.
+
             ex: destroy BaseModel 1234-1234-1234
         """
         args = line.split()
@@ -88,6 +94,7 @@ class HBNBCommand(cmd.Cmd):
         """
             Print all of the instances of a calass
             retrived for parametter
+
             ex: all BaseModel
         """
         args = line.split()
@@ -121,7 +128,7 @@ class HBNBCommand(cmd.Cmd):
             Update the atributes of an instance
             bassed in the arguments passed in line
 
-            ex: update <class name> <id> <attribute name> "<attribute value>"
+            ex: update <class name> <id> <attribute> <attrib value>
         """
         args = line.split()
 

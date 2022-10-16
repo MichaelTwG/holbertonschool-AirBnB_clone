@@ -9,6 +9,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 
+
 class FileStorage:
     """
         Serializes and Deserializes instances to a JSON file
@@ -55,7 +56,7 @@ class FileStorage:
 
         except FileNotFoundError:
             pass
-    
+
     def classes(self):
         dict_of_classes = {
             "BaseModel": BaseModel(),
