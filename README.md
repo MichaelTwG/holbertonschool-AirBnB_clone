@@ -4,7 +4,10 @@
 
 
 
-This team project is part of the Holberton School Full-Stack Software Engineer program. It's the first step towards building a first full web application: an AirBnB clone. IT consists of a custom command-line interface for data management, and the base classes for the storage of this data.
+This team project is part of the Holberton School Full-Stack Software Engineer program. It's the first step towards building a first full web application: an AirBnB clone. 
+
+IT consists of a custom command-line interface for data management, and the base classes for the storage of this data.
+
 This repository contains the initial stage of the above mentioned project. This stage implements a backend interface, or console, to manage program data. Console commands allow the user to create, update, and destroy objects, as well as manage file storage. Using a system of JSON serialization/deserialization, storage is persistent between sessions.
 
 
@@ -18,21 +21,35 @@ The console works both in interactive mode and non-interactive mode, much like a
 | Quit the console | ```(hbnb) quit``` |
 | Display the help for a command | ```(hbnb) help <command>``` |
 | Create an object (prints its id)|```(hbnb) create <class>``` |
-| Show an object | `(hbnb) show <class> <id>` or `(hbnb) <class>.show(<id>)` |
-| Destroy an object | `(hbnb) destroy <class> <id>` or `(hbnb) <class>.destroy(<id>)` |
-| Show all objects, or all instances of a class | `(hbnb) all` or `(hbnb) all <class>` |
-| Update an attribute of an object | `(hbnb) update <class> <id> <attribute name> "<attribute value>"` or `(hbnb) <class>.update(<id>, <attribute name>, "<attribute value>")` |
+| Show an object | `(hbnb) show <class> <id>`  |
+| Destroy an object | `(hbnb) destroy <class> <id>` |
+| Show all objects, or all instances of a class | `(hbnb) all` |
+| Update an attribute of an object | `(hbnb) update <class> <id> <attribute name> "<attribute value>"`|
 ___________________________________________________________________
 
 Non-interactive mode example:
 
-```$ echo "help" | ./console.py
+```
+$ echo "help" | ./console.py
 (hbnb)
-
 Documented commands (type help <topic>):
 ========================================
-EOF  all  count  create  destroy  help  quit  show update
+EOF  all  create  destroy  help  quit  show  update
 ```
+## Models
+
+The folder  **models**  contains all the classes used in this project.
+
+File | Description | Attributes
+-----|---------------|---------------------------------|
+base_model.py |BaseModel class for all the other classes | id, created_at, updated_at |
+user.py | User class for future user information | email, password, first_name, last_name |
+amenity.py | Amenity class for future amenity information | name |
+city.py | City class for future location information | state_id, name |
+state.py | State class for future location information | name |
+place.py | Place class for future accomodation information | city_id, user_id, name, description, number_rooms, number_bathrooms, max_guest, price_by_night, latitude, longitude, amenity_ids |
+review.py | Review class for future user/host review information | place_id, user_id, text
+-----------------
 
 ## File storage
 
@@ -83,63 +100,56 @@ All your files and folders are presented as a tree in the file explorer. You can
 
 ```
 
-***Alternative Syntax***
-
-Users are able to issue a number of console command using an alternative syntax:
-
-```
-Usage: <class_name>.<command>([<id>[name_arg value_arg]|[kwargs]])
-
-```
-
-
 
 ## Examples
 
 ### Primary Command Syntax ###
 
-***Example 0: Create an object***
+***Example 1: Create an object***
 
 Usage: **create <class_name>**
+``` 
+(hbnb)  create BaseModel
+b516158e-17fa-4ba2-b51e-5cb3970214d5
+(hbnb)
 
-
-
-***Example 1: Show an object***
+```
+***Example 2: Show an object***
 
 Usage: **show <class_name> <_id>**
+```
+(hbnb) show BaseModel b516158e-17fa-4ba2-b51e-5cb3970214d5
+[BaseModel] (b516158e-17fa-4ba2-b51e-5cb3970214d5) {'id': 'b516158e-17fa-4ba2-b51e-5cb3970214d5', 'created_at': datetime.datetime(2022, 10, 16, 13, 53, 18, 26109), 'updated_at': datetime.datetime(2022, 10, 16, 13, 53, 18, 26168)}
+(hbnb)
+
+```
 
 
 
-***Example 2: Destroy an object***
+***Example 3: Destroy an object***
 
 Usage: **destroy <class_name> <_id>**
+```
+(hbnb) destroy  BaseModel b516158e-17fa-4ba2-b51e-5cb3970214d5
+(hbnb) show  BaseModel b516158e-17fa-4ba2-b51e-5cb3970214d5
+** no instance found **
+(hbnb)
+```
 
 
-***Example 3: Update an object***
+***Example 4: Update an object***
 
 Usage: **update <class_name> <_id>**
 
+```
+(hbnb) create BaseModel
+520284ba-06c5-445a-9549-996b58ac5b7a
+(hbnb) update BaseModel 520284ba-06c5-445a-9549-996b58ac5b7a first_name "person"
+(hbnb) show BaseModel 520284ba-06c5-445a-9549-996b58ac5b7a
+[BaseModel] (520284ba-06c5-445a-9549-996b58ac5b7a) {'id': '520284ba-06c5-445a-9549-996b58ac5b7a', 'created_at': datetime.datetime(2022, 10, 16, 13, 59, 39, 441724), 'updated_at': datetime.datetime(2022, 10, 16, 13, 59, 39, 441778), 'first_name': '"person"'}
+(hbnb)
+```
 
-***Alternative Syntax***
-
-***Example 0: Show all User objects***
-
-Usage: **<class_name>.all()**
-
-
-***Example 1: Destroy a User***
-
-Usage: **<class_name>.destroy(<_id>)**
-
-
-***Example 2: Update User (by attribute)***
-
-Usage: **<class_name>.update(<_id>, <attribute_name>, <attribute_value>)**
-
-
-***Example 3: Update User (by dictionary)***
-
-Usage: **<class_name>.update(<_id>)**
 
 
 ## Tests
@@ -149,5 +159,5 @@ All the code is tested with the  **unittest**  module. The test for the classes 
 ## Authors
 
 
-- ***Micheal Gonia*** [Github] (https://github.com/MichaelTwG) 
--   ***Marcelo Rodriguez***  -  [Github] https://github.com/Marcelorb1) 
+- ***Michael Gonia*** [Github] (https://github.com/MichaelTwG) 
+-   ***Marcelo Rodriguez***  -  [Github] (https://github.com/Marcelorb1) 
