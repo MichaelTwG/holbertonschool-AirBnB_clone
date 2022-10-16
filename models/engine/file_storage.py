@@ -2,6 +2,7 @@
 """ Module File_Storage """
 import json
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage:
@@ -53,9 +54,8 @@ class FileStorage:
     
     def classes(self):
         dict_of_classes = {
-            "BaseModel": BaseModel()}
-        # ,
-        #     "User": User(),
+            "BaseModel": BaseModel(),
+            "User": User()}
         #     "Place": Place(),
         #     "State": State(),
         #     "City": City(),
