@@ -104,11 +104,9 @@ All your files and folders are presented as a tree in the file explorer. You can
 
 ## Examples
 
-## Examples
-
 ### Primary Command Syntax ###
 
-***Example 0: Create an object***
+***Example 1: Create an object***
 
 Usage: **create <class_name>**
 ``` 
@@ -117,7 +115,7 @@ b516158e-17fa-4ba2-b51e-5cb3970214d5
 (hbnb)
 
 ```
-***Example 1: Show an object***
+***Example 2: Show an object***
 
 Usage: **show <class_name> <_id>**
 ```
@@ -129,7 +127,7 @@ Usage: **show <class_name> <_id>**
 
 
 
-***Example 2: Destroy an object***
+***Example 3: Destroy an object***
 
 Usage: **destroy <class_name> <_id>**
 ```
@@ -140,7 +138,7 @@ Usage: **destroy <class_name> <_id>**
 ```
 
 
-***Example 3: Update an object***
+***Example 4: Update an object***
 
 Usage: **update <class_name> <_id>**
 
@@ -162,5 +160,5 @@ All the code is tested with the  **unittest**  module. The test for the classes 
 ## Authors
 
 
-- ***Micheal Gonia*** [Github] (https://github.com/MichaelTwG) 
--   ***Marcelo Rodriguez***  -  [Github] https://github.com/Marcelorb1) 
+- ***Michael Gonia*** [Github] (https://github.com/MichaelTwG) 
+-   ***Marcelo Rodriguez***  -  [Github] (https://github.com/Marcelorb1) 
