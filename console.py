@@ -68,7 +68,7 @@ class HBNBCommand(cmd.Cmd):
             ex: destroy BaseModel 1234-1234-1234
         """
         args = line.split()
-        
+
         if len(args) == 0:
             print("** class name missing **")
         elif args[0] not in storage.classes():
@@ -106,7 +106,16 @@ class HBNBCommand(cmd.Cmd):
                     if class_of_instance[0] == args[0]:
                         object_list.append(str(instance))
 
+                print(object_list)
+
+        elif len(args) == 0:
+
+            for key, instance in object_dict.items():
+
+                object_list.append(str(instance))
+
             print(object_list)
+
     def do_update(self, line):
         """
             Update the atributes of an instance
@@ -122,23 +131,23 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(args) == 1:
             print("** instance id missing **")
-        elif len(args) > 1:
+        else:
             instance_key = f"{args[0]}.{args[1]}"
 
             if instance_key not in storage.all().keys():
                 print("** no instance found **")
 
-        elif len(args) == 2:
-            print("** attribute name missing **")
-        elif len(args) == 3:
-            print("** value missing **")
+            elif len(args) == 2:
+                print("** attribute name missing **")
+            elif len(args) == 3:
+                print("** value missing **")
+            else:
+                attribute = args[2]
+                atrib_val = args[3]
+                object_dict = storage.all()
 
-            attribute = args[2]
-            atrib_val = args[3]
-            object_dict = storage.all()
-
-            object_dict[instance_key].__dict__[attribute] = atrib_val
-            storage.save()
+                object_dict[instance_key].__dict__[attribute] = atrib_val
+                storage.save()
 
 
 if __name__ == '__main__':
