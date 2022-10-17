@@ -3,6 +3,7 @@
 
 import unittest
 from models.base_model import BaseModel
+import os
 
 class test_base_models(unittest.TestCase):
     
@@ -25,6 +26,17 @@ class test_base_models(unittest.TestCase):
         out = f"[{base.__class__.__name__}] ({base.id}) {base.__dict__}"
         _str = base.__str__()
         self.assertEqual(out, _str)
+
+    def test_save(self):
+        base2 = BaseModel()
+
+        try:
+            os.remove('file.json')
+        except Exception:
+            pass
+        
+        base2.save()
+        self.assertTrue(os.path.exists('file.json'))
         
 if __name__ == '__main__':
     unittest.main()
