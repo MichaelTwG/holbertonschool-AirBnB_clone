@@ -24,7 +24,9 @@ class test_file_storage(unittest.TestCase):
 
     def test_reload(self):
         st = FileStorage()
-        self.assertRaises(FileNotFoundError, st.reload)
+        st.all().clear()
+        st.reload()
+        self.assertTrue(len(st.all()) > 0)
 
    
 
